@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SidebarRock</string>
+    <string name="action_settings">Settings</string>
+    
+    
+    <!-- general settings -->
+    <string name="preference_file_key">com.example.sidebarrock.PREFERENCE_FILE_KEY</string>
+    
+    <!-- sidebar width -->
+    <string name="sidebar_width">Sidebar Width</string>
+    <integer name="sidebar_width_default">15</integer>
+    <integer name="sidebar_width_max">50</integer>
+    <string name="siderbar_width_saved">siderbar_width_saved</string>
+    
+    
+    
+    
+    
+    
+
+</resources>
