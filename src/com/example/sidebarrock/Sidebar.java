@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -11,9 +12,13 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Sidebar extends ViewGroup{
@@ -60,7 +65,7 @@ public class Sidebar extends ViewGroup{
 //			}
 //			
 //		});
-		
+//		
 //		this.setOnTouchListener(new OnTouchListener() {
 //			
 //			@Override
@@ -89,6 +94,21 @@ public class Sidebar extends ViewGroup{
 		BrowseApplicationInfoAdapter browseAppAdapter = new BrowseApplicationInfoAdapter(context, mlistAppInfo);
 		
 		listView.setAdapter(browseAppAdapter);
+		
+		listView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> arg0, View view, int position,
+					long arg3) {
+				Intent intent = mlistAppInfo.get(position).getIntent();
+				// must have this flag set to start new task from non-activity context
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				getContext().getApplicationContext().startActivity(intent);
+				
+				// broadcast to remove root viewgroup
+				Intent intentRemove = new Intent("dismiss");
+				getContext().sendBroadcast(intentRemove);
+			}
+		});
+
 		this.addView(listView);		
 	}
 	

@@ -66,16 +66,15 @@ public class InvisibleView extends ViewGroup {
 			
 		switch(event.getAction()) {
 			case MotionEvent.ACTION_UP:
-				// there's no onUp method in SimpleOnGestureListener, so we have to handle it here
-				Toast.makeText(getContext(), "InvisibleView onUp", Toast.LENGTH_SHORT).show();
-				if(mSidebar != null) {
-					//((WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE)).removeView(mSidebar);
-					this.removeView(mSidebar);
-					//Toast.makeText(getContext(), "remove Sidebar", Toast.LENGTH_SHORT).show();
-					mSidebar = null;
-				} else {
-					Toast.makeText(getContext(), "Sidebar is null", Toast.LENGTH_SHORT).show();
-				}
+//				// there's no onUp method in SimpleOnGestureListener, so we have to handle it here
+//				if(mSidebar != null) {
+//					//((WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE)).removeView(mSidebar);
+//					this.removeView(mSidebar);
+//					//Toast.makeText(getContext(), "remove Sidebar", Toast.LENGTH_SHORT).show();
+//					mSidebar = null;
+//				} else {
+//					Toast.makeText(getContext(), "Sidebar is null", Toast.LENGTH_SHORT).show();
+//				}
 				mGestureDetector.onTouchEvent(event);
 				break;
 			default:
