@@ -26,7 +26,7 @@
         </activity>
         
         <service
-            android:name="com.example.sidebarrock.GestureService"
+            android:name="com.example.sidebarrock.BackgroundService"
             android:exported="false" />
     </application>
     
