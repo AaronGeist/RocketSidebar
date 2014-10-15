@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.example.sidebarrock.R;
 import com.panda.backend.AppInfo;
 import com.panda.backend.BrowseApplicationInfoAdapter;
 import com.panda.setting.GeneralSettings;
@@ -55,6 +56,8 @@ public class Sidebar extends ViewGroup {
 				getContext().sendBroadcast(intentRemove);
 			}
 		});
+
+		listView.setBackgroundResource(R.drawable.shape_background_grey);
 
 		// here to restrict the width of the listView
 		LayoutParams params = new LayoutParams(CommonUtils.dip2px(getContext(),
