@@ -1,12 +1,10 @@
 package com.panda.setting;
 
-import com.example.sidebarrock.R;
-import com.example.sidebarrock.R.integer;
-import com.example.sidebarrock.R.string;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+
+import com.example.sidebarrock.R;
 
 public class GeneralSettings {
 
@@ -16,6 +14,9 @@ public class GeneralSettings {
 
 	private int mMaxWidth = 0;
 	private int mSavedWidth = 0;
+
+	private int mScreenWidth = 0;
+	private int mScreenHeight = 0;
 
 	public static GeneralSettings getInstance(Context context) {
 		if (mGeneralSettings == null) {
@@ -39,6 +40,11 @@ public class GeneralSettings {
 		mSavedWidth = sharedPref
 				.getInt(mContext.getString(R.string.siderbar_width_saved),
 						defaultWidth);
+
+		mScreenWidth = sharedPref.getInt(
+				mContext.getString(R.string.screen_width), 0);
+		mScreenHeight = sharedPref.getInt(
+				mContext.getString(R.string.screen_height), 0);
 	}
 
 	public int getSavedWidth() {
@@ -55,5 +61,29 @@ public class GeneralSettings {
 
 	public int getMaxWidth() {
 		return mMaxWidth;
+	}
+
+	public int getScreenWidth() {
+		return mScreenWidth;
+	}
+
+	public void setScreenWidth(int screenWidth) {
+		this.mScreenWidth = screenWidth;
+
+		Editor editor = sharedPref.edit();
+		editor.putInt(mContext.getString(R.string.screen_width), screenWidth);
+		editor.commit();
+	}
+
+	public int getScreenHeight() {
+		return mScreenHeight;
+	}
+
+	public void setScreenHeight(int screenHeight) {
+		this.mScreenHeight = screenHeight;
+
+		Editor editor = sharedPref.edit();
+		editor.putInt(mContext.getString(R.string.screen_height), screenHeight);
+		editor.commit();
 	}
 }

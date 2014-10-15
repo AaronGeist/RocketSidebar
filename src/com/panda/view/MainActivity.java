@@ -1,12 +1,9 @@
 package com.panda.view;
 
-import com.example.sidebarrock.R;
-import com.panda.service.BackgroundService;
-import com.panda.setting.GeneralSettings;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +12,10 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.sidebarrock.R;
+import com.panda.service.BackgroundService;
+import com.panda.setting.GeneralSettings;
 
 /**
  * This is the entry for this application. In this entry, we mainly create a
@@ -47,6 +48,12 @@ public class MainActivity extends Activity {
 		// hmm, below part is a sample code for seekbar
 		gs = GeneralSettings.getInstance(getApplicationContext());
 		gs.loadGeneralSettings();
+
+		DisplayMetrics metric = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metric);
+
+		gs.setScreenWidth(metric.widthPixels);
+		gs.setScreenHeight(metric.heightPixels);
 
 		sidebarWidthText = (TextView) findViewById(R.id.sidebar_width_text);
 		sidebarWidthText.setText(Integer.toString(gs.getSavedWidth()));

@@ -27,7 +27,6 @@ public class BackgroundService extends Service {
 		// Toast.LENGTH_SHORT).show();
 
 		mView = new InvisibleView(this);
-		mView.setBackgroundColor(Color.RED);
 
 		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
 				WindowManager.LayoutParams.WRAP_CONTENT,

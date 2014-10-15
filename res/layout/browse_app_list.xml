@@ -3,5 +3,5 @@
 	android:orientation="vertical" android:layout_width="wrap_content"
 	android:layout_height="fill_parent">
 	<ListView android:id="@+id/listviewApp" android:layout_width="wrap_content"
-		android:layout_height="fill_parent" ></ListView>
+		android:layout_height="fill_parent" android:divider="@null"></ListView>
 </LinearLayout>
