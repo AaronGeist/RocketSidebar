@@ -17,14 +17,11 @@ public class BackgroundService extends Service {
 
 	public BackgroundService() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		// Toast.makeText(getBaseContext(), "onCreate",
-		// Toast.LENGTH_SHORT).show();
 
 		mView = new InvisibleView(this);
 

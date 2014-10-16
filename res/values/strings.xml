@@ -10,8 +10,8 @@
     
     <!-- sidebar width -->
     <string name="sidebar_width">Sidebar Width</string>
-    <integer name="sidebar_width_default">15</integer>
-    <integer name="sidebar_width_max">50</integer>
+    <integer name="sidebar_width_default">0</integer>
+    <integer name="sidebar_width_max">6</integer>
     <string name="siderbar_width_saved">siderbar_width_saved</string>
     
     

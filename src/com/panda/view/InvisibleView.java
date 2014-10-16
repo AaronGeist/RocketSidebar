@@ -20,14 +20,12 @@ public class InvisibleView extends ViewGroup {
 	private Context mContext = null;
 	private Sidebar mSidebar = null;
 
-	private final int invisibleTriggerWidth = 5;
-	private final int invisibleTriggerHeight = 100;
+	private final int INVISIBLE_TRIGGER_WIDTH = 5;
+	private final int INVISIBLE_TRIGGER_HEIGHT = 400;
 
 	public InvisibleView(Context context) {
 		super(context);
 		mContext = context;
-
-		// this.setBackgroundColor(Color.YELLOW);
 
 		mGestureDetector = new GestureDetector(context,
 				new GestureListner(this));
@@ -171,8 +169,8 @@ public class InvisibleView extends ViewGroup {
 
 		// here we set the initial size for the hook
 		if (cCount == 0) {
-			width = invisibleTriggerWidth;
-			height = invisibleTriggerHeight;
+			width = INVISIBLE_TRIGGER_WIDTH;
+			height = INVISIBLE_TRIGGER_HEIGHT;
 		} else {
 			for (int i = 0; i < cCount; i++) {
 				View childView = getChildAt(i);
