@@ -33,7 +33,7 @@ public class Sidebar extends ViewGroup {
 		mContext = context;
 
 		mAppManager = new ApplicationManager(mContext);
-		mAppManager.loadAllApps();
+		mAppManager.loadApps();
 
 		ListView appListView = new ListView(mContext);
 		mAppInfoList = mAppManager.getAllAppList();
@@ -66,7 +66,7 @@ public class Sidebar extends ViewGroup {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
-				if (position < mGeneralSetting.getSavedWidth()) {
+				if (position < mGeneralSetting.getSavedFavAppNum()) {
 					// choose one application as favorite
 					pickFavoriteApp(position);
 				}
@@ -76,6 +76,7 @@ public class Sidebar extends ViewGroup {
 		});
 
 		appListView.setBackgroundResource(R.drawable.shape_background_grey);
+		appListView.setVerticalScrollBarEnabled(false);
 
 		// here to restrict the width of the listView
 		LayoutParams params = new LayoutParams(CommonUtils.dip2px(getContext(),
@@ -96,9 +97,10 @@ public class Sidebar extends ViewGroup {
 	}
 
 	private void pickFavoriteApp(final int location) {
-		List<AppInfo> appInfoList = mAppManager.getAllAppList();
+		final List<AppInfo> appInfoList = mAppManager.getDefaultAppList();
 
 		ListView appListView = new ListView(mContext);
+		appListView.setVerticalScrollBarEnabled(false);
 
 		// TODO need to sort the appList
 		BrowseApplicationInfoAdapter browseAppAdapter = new BrowseApplicationInfoAdapter(
@@ -109,14 +111,17 @@ public class Sidebar extends ViewGroup {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
-				// TODO need to remember the app in generalsetting
-				AppInfo appInfo = mAppInfoList.get(position);
-				mAppInfoList.set(location, appInfo);
+				AppInfo appInfo = appInfoList.get(position);
+
+				// remember the app in generalsetting
+				mGeneralSetting.setFavAppInfo(location, appInfo.getPkgName());
+
+				Sidebar.Dismiss();
 			}
 		});
 
 		LayoutParams params = new LayoutParams(CommonUtils.dip2px(getContext(),
-				70), WindowManager.LayoutParams.WRAP_CONTENT);
+				90), WindowManager.LayoutParams.WRAP_CONTENT);
 
 		this.addView(appListView, params);
 	}

@@ -56,11 +56,11 @@ public class MainActivity extends Activity {
 		gs.setScreenHeight(metric.heightPixels);
 
 		sidebarWidthText = (TextView) findViewById(R.id.sidebar_width_text);
-		sidebarWidthText.setText(Integer.toString(gs.getSavedWidth()));
+		sidebarWidthText.setText(Integer.toString(gs.getSavedFavAppNum()));
 
 		sidebarWidthSeek = (SeekBar) findViewById(R.id.sidebar_width_selector);
-		sidebarWidthSeek.setMax(gs.getMaxWidth());
-		sidebarWidthSeek.setProgress(gs.getSavedWidth());
+		sidebarWidthSeek.setMax(gs.getMaxFavAppNum());
+		sidebarWidthSeek.setProgress(gs.getSavedFavAppNum());
 		sidebarWidthSeek
 				.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
@@ -79,7 +79,7 @@ public class MainActivity extends Activity {
 					public void onStopTrackingTouch(SeekBar seekbar) {
 						gs = GeneralSettings
 								.getInstance(getApplicationContext());
-						gs.setSavedWidth(seekbar.getProgress());
+						gs.setSavedFavAppNum(seekbar.getProgress());
 					}
 
 				});

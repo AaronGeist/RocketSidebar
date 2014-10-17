@@ -1,5 +1,9 @@
 package com.panda.setting;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -12,11 +16,14 @@ public class GeneralSettings {
 	private Context mContext = null;
 	private SharedPreferences sharedPref = null;
 
-	private int mMaxWidth = 0;
-	private int mSavedWidth = 0;
+	private int mMaxFavAppNum = 0;
+	private int mSavedFavAppNum = 0;
 
 	private int mScreenWidth = 0;
 	private int mScreenHeight = 0;
+
+	private List<String> mFavAppInfoList = null;
+	private List<Integer> mFavAppInfoPersistenceList = null;
 
 	public static GeneralSettings getInstance(Context context) {
 		if (mGeneralSettings == null) {
@@ -30,16 +37,29 @@ public class GeneralSettings {
 		sharedPref = mContext.getSharedPreferences(
 				mContext.getString(R.string.preference_file_key),
 				Context.MODE_PRIVATE);
+		mFavAppInfoList = new ArrayList<String>();
+		mFavAppInfoPersistenceList = new ArrayList<Integer>(Arrays.asList(
+				R.string.siderbar_fav_app_info_1,
+				R.string.siderbar_fav_app_info_2,
+				R.string.siderbar_fav_app_info_3,
+				R.string.siderbar_fav_app_info_4,
+				R.string.siderbar_fav_app_info_5,
+				R.string.siderbar_fav_app_info_6));
 	}
 
 	public void loadGeneralSettings() {
 		int defaultWidth = mContext.getResources().getInteger(
-				R.integer.sidebar_width_default);
-		mMaxWidth = mContext.getResources().getInteger(
-				R.integer.sidebar_width_max);
-		mSavedWidth = sharedPref
-				.getInt(mContext.getString(R.string.siderbar_width_saved),
-						defaultWidth);
+				R.integer.sidebar_fav_app_num_default);
+		mMaxFavAppNum = mContext.getResources().getInteger(
+				R.integer.sidebar_fav_app_num_max);
+		mSavedFavAppNum = sharedPref.getInt(
+				mContext.getString(R.string.siderbar_fav_app_num_saved),
+				defaultWidth);
+		for (int i = 0; i < mMaxFavAppNum; i++) {
+			mFavAppInfoList
+					.add(sharedPref.getString(mContext
+							.getString(mFavAppInfoPersistenceList.get(i)), null));
+		}
 
 		mScreenWidth = sharedPref.getInt(
 				mContext.getString(R.string.screen_width), 0);
@@ -47,20 +67,20 @@ public class GeneralSettings {
 				mContext.getString(R.string.screen_height), 0);
 	}
 
-	public int getSavedWidth() {
-		return mSavedWidth;
+	public int getSavedFavAppNum() {
+		return mSavedFavAppNum;
 	}
 
-	public void setSavedWidth(int newWidth) {
-		this.mSavedWidth = newWidth;
+	public void setSavedFavAppNum(int newFavAppNum) {
+		this.mSavedFavAppNum = newFavAppNum;
 		Editor editor = sharedPref.edit();
-		editor.putInt(mContext.getString(R.string.siderbar_width_saved),
-				newWidth);
+		editor.putInt(mContext.getString(R.string.siderbar_fav_app_num_saved),
+				newFavAppNum);
 		editor.commit();
 	}
 
-	public int getMaxWidth() {
-		return mMaxWidth;
+	public int getMaxFavAppNum() {
+		return mMaxFavAppNum;
 	}
 
 	public int getScreenWidth() {
@@ -84,6 +104,26 @@ public class GeneralSettings {
 
 		Editor editor = sharedPref.edit();
 		editor.putInt(mContext.getString(R.string.screen_height), screenHeight);
+		editor.commit();
+	}
+
+	public String getFavAppInfo(int index) {
+		// check boundary before fetch element
+		return (index >= mFavAppInfoList.size()) ? null : mFavAppInfoList
+				.get(index);
+	}
+
+	public void setFavAppInfo(int index, String favAppInfo) {
+		if (index >= mFavAppInfoList.size()) {
+			return;
+		}
+
+		this.mFavAppInfoList.set(index, favAppInfo);
+
+		Editor editor = sharedPref.edit();
+		editor.putString(
+				mContext.getString(mFavAppInfoPersistenceList.get(index)),
+				favAppInfo);
 		editor.commit();
 	}
 }

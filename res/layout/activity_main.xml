@@ -12,7 +12,7 @@
         android:id="@+id/sidebar_width"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sidebar_width" />
+        android:text="@string/sidebar_fav_app_num" />
 
     <TextView
         android:id="@+id/sidebar_width_text"

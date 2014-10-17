@@ -8,13 +8,18 @@
     <!-- general settings -->
     <string name="preference_file_key">com.example.sidebarrock.PREFERENCE_FILE_KEY</string>
     
-    <!-- sidebar width -->
-    <string name="sidebar_width">Sidebar Width</string>
-    <integer name="sidebar_width_default">0</integer>
-    <integer name="sidebar_width_max">6</integer>
-    <string name="siderbar_width_saved">siderbar_width_saved</string>
-    
-    
+    <!-- sidebar favorite application settings -->
+    <string name="sidebar_fav_app_num">Favorite App Num</string>
+    <integer name="sidebar_fav_app_num_default">0</integer>
+    <integer name="sidebar_fav_app_num_max">6</integer>
+    <string name="siderbar_fav_app_num_saved">siderbar_fav_app_saved</string>
+    <string name="siderbar_fav_app_info_1">siderbar_fav_app_info_1</string>
+    <string name="siderbar_fav_app_info_2">siderbar_fav_app_info_2</string>
+    <string name="siderbar_fav_app_info_3">siderbar_fav_app_info_3</string>
+    <string name="siderbar_fav_app_info_4">siderbar_fav_app_info_4</string>
+    <string name="siderbar_fav_app_info_5">siderbar_fav_app_info_5</string>
+    <string name="siderbar_fav_app_info_6">siderbar_fav_app_info_6</string>
+
     <string name="screen_width">screen_width</string>
     <string name="screen_height">screen_height</string>
     
