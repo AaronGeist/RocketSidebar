@@ -1,15 +1,14 @@
 package com.panda.service;
 
-import com.panda.view.InvisibleView;
-
 import android.app.Service;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.panda.view.InvisibleView;
 
 public class BackgroundService extends Service {
 
@@ -55,10 +54,6 @@ public class BackgroundService extends Service {
 					.removeView(mView);
 			mView = null;
 		}
-
-		Intent localIntent = new Intent();
-		localIntent.setClass(this, BackgroundService.class);
-		this.startService(localIntent);
 	}
 
 	@Override

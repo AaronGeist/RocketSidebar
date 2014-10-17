@@ -22,6 +22,8 @@ public class GeneralSettings {
 	private int mScreenWidth = 0;
 	private int mScreenHeight = 0;
 
+	private boolean mSidebarOn = false;
+
 	private List<String> mFavAppInfoList = null;
 	private List<Integer> mFavAppInfoPersistenceList = null;
 
@@ -65,6 +67,9 @@ public class GeneralSettings {
 				mContext.getString(R.string.screen_width), 0);
 		mScreenHeight = sharedPref.getInt(
 				mContext.getString(R.string.screen_height), 0);
+
+		mSidebarOn = sharedPref.getBoolean(
+				mContext.getString(R.string.switch_on), false);
 	}
 
 	public int getSavedFavAppNum() {
@@ -124,6 +129,19 @@ public class GeneralSettings {
 		editor.putString(
 				mContext.getString(mFavAppInfoPersistenceList.get(index)),
 				favAppInfo);
+		editor.commit();
+	}
+
+	public boolean isSidebarOn() {
+		return mSidebarOn;
+	}
+
+	public void setSidebarOn(boolean sidebarOn) {
+		this.mSidebarOn = sidebarOn;
+
+		Editor editor = sharedPref.edit();
+		editor.putBoolean(mContext.getString(R.string.switch_on),
+				sidebarOn);
 		editor.commit();
 	}
 }

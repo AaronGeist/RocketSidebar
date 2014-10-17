@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SidebarRock</string>
+	<!-- Display String -->
+    <string name="app_name">Rocket Sidebar</string>
     <string name="action_settings">Settings</string>
-    
+    <string name="sidebar_switch_on">ON</string>
+    <string name="sidebar_switch_off">OFF</string>
     
     <!-- general settings -->
     <string name="preference_file_key">com.example.sidebarrock.PREFERENCE_FILE_KEY</string>
@@ -23,9 +25,6 @@
     <string name="screen_width">screen_width</string>
     <string name="screen_height">screen_height</string>
     
-    
-    
-    
-    
+    <string name="switch_on">sidebar_switch_on</string>
 
 </resources>

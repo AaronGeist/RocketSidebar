@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.sidebarrock.R;
 import com.panda.backend.AppInfo;
@@ -44,8 +43,8 @@ public class Sidebar extends ViewGroup {
 		appListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1,
-					int position, long arg3) {
+			public void onItemClick(AdapterView<?> parentView, View view,
+					int position, long id) {
 				AppInfo appInfo = mAppInfoList.get(position);
 				if (appInfo.getIntent() != null) {
 					Intent intent = appInfo.getIntent();
@@ -64,11 +63,16 @@ public class Sidebar extends ViewGroup {
 		appListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
-			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
-					int position, long arg3) {
+			public boolean onItemLongClick(AdapterView<?> parentView,
+					View view, int position, long id) {
 				if (position < mGeneralSetting.getSavedFavAppNum()) {
+					// freeze the ListView first, not chooseable
+					// if not, user could choose another item for long click...
+					parentView.setEnabled(false);
+
 					// choose one application as favorite
-					pickFavoriteApp(position);
+					pickFavoriteApp(position, parentView);
+
 				}
 				return true;
 			}
@@ -90,31 +94,31 @@ public class Sidebar extends ViewGroup {
 		this.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View arg0) {
+			public void onClick(View view) {
 				Sidebar.Dismiss();
 			}
 		});
 	}
 
-	private void pickFavoriteApp(final int location) {
+	private void pickFavoriteApp(final int location, final View originView) {
 		final List<AppInfo> appInfoList = mAppManager.getDefaultAppList();
 
 		ListView appListView = new ListView(mContext);
 		appListView.setVerticalScrollBarEnabled(false);
 
-		// TODO need to sort the appList
 		BrowseApplicationInfoAdapter browseAppAdapter = new BrowseApplicationInfoAdapter(
 				mContext, appInfoList);
 		appListView.setAdapter(browseAppAdapter);
 		appListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1,
-					int position, long arg3) {
+			public void onItemClick(AdapterView<?> parentView, View view,
+					int position, long id) {
 				AppInfo appInfo = appInfoList.get(position);
 
 				// remember the app in generalsetting
 				mGeneralSetting.setFavAppInfo(location, appInfo.getPkgName());
+				originView.setEnabled(true);
 
 				Sidebar.Dismiss();
 			}

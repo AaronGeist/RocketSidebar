@@ -12,6 +12,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
+
+import com.example.sidebarrock.R;
 
 public class InvisibleView extends ViewGroup {
 
@@ -90,6 +93,8 @@ public class InvisibleView extends ViewGroup {
 
 				if (mSidebar == null) {
 					mSidebar = new Sidebar(mContext);
+					mSidebar.setAnimation(AnimationUtils.loadAnimation(
+							mContext, R.anim.in));
 					mViewGroup.addView(mSidebar, params);
 				}
 			}
@@ -197,9 +202,7 @@ public class InvisibleView extends ViewGroup {
 
 		@Override
 		public void onReceive(Context arg0, Intent arg1) {
-			// TODO Auto-generated method stub
-			// Toast.makeText(getContext(), "Destory View",
-			// Toast.LENGTH_SHORT).show();
+
 			vg.removeView(mSidebar);
 			mSidebar = null;
 		}

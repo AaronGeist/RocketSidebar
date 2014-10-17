@@ -28,22 +28,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/sidebar_width" />
 
-    <Button
-        android:id="@+id/startBtn"
+    <Switch
+        android:id="@+id/sidebarSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/sidebar_width_selector"
         android:layout_below="@+id/sidebar_width_selector"
-        android:layout_marginTop="14dp"
-        android:text="Start" />
-
-    <Button
-        android:id="@+id/stopBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/startBtn"
-        android:layout_alignBottom="@+id/startBtn"
-        android:layout_toLeftOf="@+id/sidebar_width_text"
-        android:text="Stop" />
+        android:layout_marginTop="23dp"
+        android:textOff="@string/sidebar_switch_off"
+        android:textOn="@string/sidebar_switch_on" />
 
 </RelativeLayout>
